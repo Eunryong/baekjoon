@@ -18,11 +18,11 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL); cout.tie(NULL);
     cin >> N;
+    vector<int> v;
     if (N == 0) {
         cout << N;
         return 0;
     }
-    vector<int> v;
     for (int i = 0; i < N; i++) {
         int tmp;
         cin >> tmp;
@@ -30,14 +30,13 @@ int main()
     }
     sort(v.begin(), v.end());
     int st;
-    double start = (double)N * 0.15;
+    float start = (float)N * 0.15;
     st = round(start);
     int sum = 0;
-    for (int i = st; i < v.size() - st; i++) {
+    for (int i = st; i < N - st; i++) {
         sum += v[i];
     }
-    double ans = (double)sum / (v.size() - (2 * st));
-    double r_ans = round(ans);
-    cout << r_ans;
+    float ans = round((float)sum / (N - (2 * st)));
+    cout << ans;
     return 0;
 }
