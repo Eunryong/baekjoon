@@ -19,17 +19,19 @@ int main()
     cin.tie(NULL); cout.tie(NULL);
     cin >> N >> M;
     string s;
-    for (int i = 0; i < N; i++) {
-        s += "IO";
-    }
-    s += "I";
-    string src;
-    cin >> src;
+    cin >> s;
     int ans = 0;
-    for (int i = 0; i < src.size(); i++) {
-        if (src.find(s, i) != string::npos){
-            i = src.find(s, i);
-            ans++;
+    for (int i = 0; i < s.size(); i++) {
+        int k = 0;
+        if (s[i] == 'I') {
+            while (s[i + 1] == 'O' && s[i + 2] == 'I') {
+                k++;
+                if (N == k) {
+                    k--;
+                    ans++;
+                }
+                i += 2;
+            }
         }
     }
     cout << ans;
