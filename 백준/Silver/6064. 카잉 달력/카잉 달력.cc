@@ -34,15 +34,13 @@ int main()
     for (int i = 0; i < T; i++) {
         cin >> M >> N >> x >> y;
         vector<int> v;
-        for (int i = 0; i < lcm(M, N) / M; i++) {
-            v.push_back(i * M + x);
-        }
         int ans = -1;
-        if (N == 1) ans = v[0];
-        else {
-            for (int i = 0; i < v.size(); i++) {
-                if (v[i] % N == y % N)
-                    ans = v[i];
+        for (int i = 0; i < lcm(M, N) / M; i++) {
+            int tmp = i * M + x;
+            v.push_back(tmp);
+            if (tmp % N == y % N) {
+                ans = tmp;
+                break ;
             }
         }
         cout << ans << "\n";
