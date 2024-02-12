@@ -21,13 +21,17 @@ int main()
     for (int i = 1; i <= N; i++) cin >> arr[i];
     st.push(0);
     for (int i = 1; i <= N + 1; i++) {
-        while (arr[i] < arr[st.top()] && !st.empty()) {
-            h = arr[st.top()];
-            st.pop();
-            w = i - st.top() - 1;
-            ans = max(ans, h * w);
+        if (st.size() == 1 || arr[i] > arr[st.top()])
+            st.push(i);
+        else {
+            while (st.size() != 1 && arr[i] <= arr[st.top()]) {
+                h = arr[st.top()];
+                st.pop();
+                w = i - st.top() - 1;
+                ans = max(ans, h * w);
+            }
+            st.push(i);
         }
-        st.push(i);
     }
     cout << ans;
     return 0;
