@@ -27,14 +27,16 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL); cout.tie(NULL);
     cin >> d;
-    int n = d * 1000000;
-    if (n != d * 1000000) {
+    int n = d * 1000000000;
+    if (n != d * 1000000000) {
         cout << "NO\n";
         return 0;
     }
-    int a = gcd(n, 1000000);
+    int a = gcd(n, 1000000000);
     cout << "YES\n";
-    cout << n / a << " " << 1000000 / a;
+    cout << fixed;
+    cout.precision(0);
+    cout <<  n / a << " " << 1000000000 / a;
     
     return 0;
 }
