@@ -27,29 +27,38 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL); cout.tie(NULL);
     cin >> N;
-    set<pair<int, int> > s;
+    map<pair<int, int>, bool> m;
     int ans = 0;
     for (int i = 0; i < N; i++) {
         int a, b;
         cin >> a >> b;
         int x, y;
+        int n;
         if (a < 0 && b < 0) {
-            x = (a * -1) / gcd(a * -1, b * -1);
-            y = (b * -1) / gcd(a * -1, b * -1);
+            n = gcd(a * -1, b * -1);
+            x = (a * -1) / n;
+            y = (b * -1) / n;
+            x *= -1;
+            y *= -1;
         } else if (a < 0) {
-            x = (a * -1) / gcd(a * -1, b);
-            y = b / gcd(a * -1, b);
+            n = gcd(a * -1, b);
+            x = (a * -1) / n;
+            y = b / n;
+            x *= -1;
         } else if (b < 0) {
-            x = a / gcd(a, b * -1);
-            y = (b * -1) / gcd(a, b * -1);
+            n = gcd(a, b * -1);
+            x = a / n;
+            y = (b * -1) / n;
+            y *= -1;
         } else {
-            x = a / gcd(a, b);
-            y = b / gcd(a, b);
+            n = gcd(a, b);
+            x = a / n;
+            y = b / n;
         }
-        if (!s.count({x, y})) {
-            s.insert({x, y});
+        if (!m[{x, y}]) {
+            m[{x, y}] = 1;
             ans++;
-        }    
+        }
     }
     cout << ans;
     return 0;
