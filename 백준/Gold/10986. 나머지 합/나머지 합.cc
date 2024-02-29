@@ -11,7 +11,7 @@
 #include <cmath>
 using namespace std;
 int N, M;
-long long sum[1000001];
+int sum[1000001];
 int m[1001];
 int main()
 {
@@ -22,8 +22,8 @@ int main()
     for (int i = 0; i < N; i++) {
         int t;
         cin >> t;
-        sum[i] = ((i != 0 ? sum[i - 1] : 0) + t);
-        m[sum[i] % M]++;
+        sum[i] = ((i != 0 ? sum[i - 1] : 0) + t) % M;
+        m[sum[i]]++;
     }
     ans = m[0];
     for (int i = 0; i < M; i++) {
