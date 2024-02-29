@@ -11,7 +11,7 @@
 #include <cmath>
 using namespace std;
 int T;
-int arr[26][2001];
+int arr[26][200001];
 int main()
 {
     ios_base::sync_with_stdio(false);
