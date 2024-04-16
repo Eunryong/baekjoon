@@ -22,9 +22,9 @@ int main()
     cin >> N;
     for (int i = 1; i <= N; i++) {
         cin >> arr[i];
+
     }
-    dp[1][arr[1]] = arr[1];
-    for (int i = 2; i <= N; i++) {
+    for (int i = 1; i <= N; i++) {
         for (int j = 0; j <= 1000; j++) {
             if (j != arr[i])
                 dp[i][j] = dp[i - 1][j];
@@ -32,6 +32,6 @@ int main()
                 dp[i][arr[i]] = max(dp[i][arr[i]], dp[i - 1][j] + arr[i]);
         }
     }
-    cout << *max_element(dp[N], dp[N] + *max_element(arr, arr + N + 1) + 1);
+    cout << *max_element(dp[N], dp[N] + 1001);
     return 0;
 }
