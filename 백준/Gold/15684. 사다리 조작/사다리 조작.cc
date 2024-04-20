@@ -37,6 +37,9 @@ void dfs(int x, int y, int cnt) {
         arr[x][y + 1] = y;
         if (end_game()) {
             ans = min(ans, cnt + 1);
+            arr[x][y] = 0;
+            arr[x][y + 1] = 0;
+            return ;
         }
         dfs(x, y + 2, cnt + 1);
         arr[x][y] = 0;
