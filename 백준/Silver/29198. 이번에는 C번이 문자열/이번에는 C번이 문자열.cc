@@ -14,28 +14,26 @@
 #define rep(i, a, b) for (int i = (a); i < (b); ++i)
 typedef long long ll;
 using namespace std;
-set<string> s;
 int n, m, k;
+int cnt[26];
+string s[301];
 
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL); cout.tie(NULL);
     cin >> n >> m >> k;
-    priority_queue<string, vector<string>, greater<string> > q;
     for (int i = 0; i < n; i++) {
-        string str;
-        cin >> str;
-        q.push(str);
+        cin >> s[i];
+        sort(s[i].begin(), s[i].end());
     }
+    sort(s, s + n);
     int j = 0;
-    string str = "";
-    while (!q.empty() && j < k) {
-        str += q.top();
-        q.pop();
-        j++;
+    string ans = "";
+    for (int i = 0; i < k; i++) {
+        ans += s[i];
     }
-    sort(str.begin(), str.end());
-    cout << str;
+    sort(ans.begin(), ans.end());
+    cout << ans;
     return 0;
 }
