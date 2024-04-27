@@ -10,46 +10,38 @@
 #include <utility>
 #include <cmath>
 using namespace std;
-int N, K;
-int check(string s, string c) {
-    int j = 0;
-    int cnt = 0;
-    int cur = 0;
-    for (int i = 0; i < s.size(); i++) {
-        if (j >= 3) j = 0;
-        if (s[i] == c[j]) {
-            cnt += i - cur;
-            cur = i + 1;
-            j++;
-        } else if (s.size() - 1 == i) {
-            cnt += s.size() - cur;
-        }
-    }
-    return cnt;
-}
+string s;
+string check[3] = {"KSA", "SAK", "AKS"};
+int cnt[3];
 
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL); cout.tie(NULL);
-    string s;
     cin >> s;
-    int ksa, sak, aks; 
-    ksa = check(s, "KSA");
-    sak = check(s, "SAK");
-    aks = check(s, "AKS");
-    ksa *= 2;
-    if (sak < 1) {
-        sak +=2;
-    } else {
-        sak *= 2;
+    int x = 0, y = 0, z = 0;
+    for (int i = 0; i < s.size(); i++) {
+        if (s[i] == check[0][x]) {
+            x = (x + 1) % 3;
+            cnt[0]++;
+        }
+        if (s[i] == check[1][y]) {
+            y = (y + 1) % 3;
+            cnt[1]++;
+        }
+        if (s[i] == check[2][z]) {
+            z = (z + 1) % 3;
+            cnt[2]++;
+        }
     }
-    if (aks < 2) {
-        aks += aks * 2;
-    } else {
-        aks *= 2;
+    if (s.size() == cnt[1]) {
+        cnt[1] -= 1;
     }
-    // cout << ksa << " " << sak << " "  << aks;
-    cout << min(ksa, min(aks, sak));
+    if (s.size() == cnt[2]) {
+        cnt[2] -= 2;
+    } else if (s.size() < 3 && cnt[2]) {
+        cnt[2] -= s.size() - 1;
+    }
+    cout << (s.size() - max({cnt[0], cnt[1], cnt[2]})) * 2;
     return 0;
 }
