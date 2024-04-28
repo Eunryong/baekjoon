@@ -13,7 +13,8 @@ using namespace std;
 string s;
 string check[3] = {"KSA", "SAK", "AKS"};
 int cnt[3];
-
+bool A;
+int st = -1;
 int main()
 {
     ios_base::sync_with_stdio(false);
@@ -32,21 +33,26 @@ int main()
         if (s[i] == check[2][z]) {
             z = (z + 1) % 3;
             cnt[2]++;
+            if (A == 0) {
+                st = i;
+                A = 1;
+            }
         }
     }
-    
-    if (s.size() <= 3 && cnt[2] + 1 == s.size()) {
-        cnt[2] -= 1;
-    } else {
-        if (s.size() == cnt[2]) {
-            cnt[2] -= 1;
-        }
-    }
-    if (s.size() == cnt[1]) {
-        cnt[1] -= 1;
-    } 
 
-    // for (int i = 0; i < 3; i++) cout << cnt[i] << "\n";
+    if (s.size() == 1) {
+        if (cnt[1]) cnt[1] = 0;
+        if (cnt[2]) cnt[2] = 0;
+    } else if (s.size() == 2) {
+        if (cnt[1] == 2) cnt[1] -= 1;
+        if (cnt[2]) cnt[2] = 0;
+    } else {
+        if (cnt[1] == s.size()) cnt[1] -= 1;
+        if (cnt[2] == s.size()) cnt[2] -= 1;
+        else if (cnt[2] + 2 > s.size() && st < 2) {
+            cnt[2] -= st + 1;
+        }
+    }
     int tmp = max({cnt[0], cnt[1], cnt[2]});
     cout << (s.size() - tmp) * 2;
     return 0;
