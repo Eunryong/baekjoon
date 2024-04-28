@@ -34,8 +34,12 @@ int main()
                 if (dp[i - 1][j] < arr[k].first) {
                     continue;
                 } else {
-                    dp[i][j + arr[k].second] = max(dp[i - 1][j + arr[k].second], dp[i - 1][j] - arr[k].first);
-                    q.push(j + arr[k].second);
+                    if (check[j + arr[k].second]){
+                        dp[i][j + arr[k].second] = max(dp[i - 1][j + arr[k].second], dp[i - 1][j] - arr[k].first);
+                    } else {
+                        dp[i][j + arr[k].second] = dp[i - 1][j] - arr[k].first;
+                        q.push(j + arr[k].second);
+                    }
                 }
             }
         }
