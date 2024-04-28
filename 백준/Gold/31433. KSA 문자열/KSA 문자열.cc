@@ -12,7 +12,7 @@
 using namespace std;
 string s;
 string check[3] = {"KSA", "SAK", "AKS"};
-int cnt[3];
+long long cnt[3];
 
 int main()
 {
