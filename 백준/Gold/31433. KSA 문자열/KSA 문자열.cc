@@ -34,19 +34,21 @@ int main()
             cnt[2]++;
         }
     }
+    
+    if (s.size() <= 3 && cnt[2] + 1 == s.size()) {
+        cnt[2] -= 1;
+    } else {
+        if (s.size() == cnt[2]) {
+            cnt[2] -= 1;
+        }
+    }
     if (s.size() == cnt[1]) {
         cnt[1] -= 1;
-    }
-    if (s.size() == cnt[2]) {
-        cnt[2] -= 1;
-    } else if (s.size() <= 3 && cnt[2] + 1 == s.size()) {
-        cnt[2] -= 1;
-    }
+    } 
+
+    // for (int i = 0; i < 3; i++) cout << cnt[i] << "\n";
     int tmp = max({cnt[0], cnt[1], cnt[2]});
-    if (s.size() > tmp) {
-        cout << (s.size() - tmp) * 2;
-    } else {
-        cout << 0;
-    }
+    cout << (s.size() - tmp) * 2;
     return 0;
 }
+
