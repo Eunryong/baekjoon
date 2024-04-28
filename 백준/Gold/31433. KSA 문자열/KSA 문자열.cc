@@ -39,9 +39,14 @@ int main()
     }
     if (s.size() == cnt[2]) {
         cnt[2] -= 2;
-    } else if (s.size() <= 3 && cnt[2] == s.size() - 1) {
+    } else if (s.size() <= 3 && cnt[2] + 1 == s.size()) {
         cnt[2] -= 1;
     }
-    cout << (s.size() - max({cnt[0], cnt[1], cnt[2]})) * 2;
+    int tmp = max({cnt[0], cnt[1], cnt[2]});
+    if (s.size() > tmp) {
+        cout << (s.size() - tmp) * 2;
+    } else {
+        cout << 0;
+    }
     return 0;
 }
