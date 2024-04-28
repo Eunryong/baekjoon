@@ -40,7 +40,7 @@ int main()
     if (s.size() == cnt[2]) {
         cnt[2] -= 2;
     } else if (s.size() <= 3 && cnt[2] == s.size() - 1) {
-        cnt[2] -= s.size() - 1;
+        cnt[2] -= 1;
     }
     cout << (s.size() - max({cnt[0], cnt[1], cnt[2]})) * 2;
     return 0;
