@@ -12,7 +12,7 @@
 using namespace std;
 string s;
 string check[3] = {"KSA", "SAK", "AKS"};
-long long cnt[3];
+int cnt[3];
 
 int main()
 {
@@ -38,7 +38,7 @@ int main()
         cnt[1] -= 1;
     }
     if (s.size() == cnt[2]) {
-        cnt[2] -= 2;
+        cnt[2] -= 1;
     } else if (s.size() <= 3 && cnt[2] + 1 == s.size()) {
         cnt[2] -= 1;
     }
