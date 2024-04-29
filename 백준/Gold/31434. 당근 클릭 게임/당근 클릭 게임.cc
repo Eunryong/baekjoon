@@ -26,19 +26,16 @@ int main()
     for (int i = 1; i <= k; i++) {
         queue<int> q;
         for (int j = 1; j <= 5001; j++) {
-            if (check[j] == true) {
-                dp[i][j] = dp[i - 1][j] + j;
+            if (check[j] == false) {
+                continue;
             }
+            dp[i][j] = dp[i - 1][j] + j;
             for (int k = 1; k <= n; k++) {
                 if (dp[i - 1][j] < arr[k].first) {
                     continue;
                 } else {
-                    // if (check[j + arr[k].second]){
-                    //     dp[i][j + arr[k].second] = max(dp[i - 1][j + arr[k].second] + j + arr[k].second, dp[i - 1][j] - arr[k].first);
-                    // } else {
-                    // }
-                        dp[i][j + arr[k].second] = dp[i - 1][j] - arr[k].first;
-                        q.push(j + arr[k].second);
+                    dp[i][j + arr[k].second] = dp[i - 1][j] - arr[k].first;
+                    q.push(j + arr[k].second);
                 }
             }
         }
