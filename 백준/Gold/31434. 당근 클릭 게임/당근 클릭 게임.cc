@@ -12,21 +12,20 @@
 using namespace std;
 int n, k;
 pair<int, int> arr[101];
-int dp[101][5001];
-bool check[5001];
+int dp[101][5002];
+bool check[5002];
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL); cout.tie(NULL);
     cin >> n >> k;
     for (int i = 1; i <= n; i++) {
-        int x, y;
         cin >> arr[i].first >> arr[i].second;
     }
     check[1] = 1;
     for (int i = 1; i <= k; i++) {
         queue<int> q;
-        for (int j = 1; j <= 5000; j++) {
+        for (int j = 1; j <= 5001; j++) {
             if (check[j] == true) {
                 dp[i][j] = dp[i - 1][j] + j;
             }
@@ -49,6 +48,6 @@ int main()
             check[x] = 1;
         }
     }
-    cout << *max_element(dp[k], dp[k] + 5001);
+    cout << *max_element(dp[k], dp[k] + 5002);
     return 0;
 }
