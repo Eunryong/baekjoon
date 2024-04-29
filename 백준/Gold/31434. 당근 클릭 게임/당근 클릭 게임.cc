@@ -33,12 +33,12 @@ int main()
                 if (dp[i - 1][j] < arr[k].first) {
                     continue;
                 } else {
-                    if (check[j + arr[k].second]){
-                        dp[i][j + arr[k].second] = max(dp[i - 1][j + arr[k].second] + j + arr[k].second, dp[i - 1][j] - arr[k].first);
-                    } else {
+                    // if (check[j + arr[k].second]){
+                    //     dp[i][j + arr[k].second] = max(dp[i - 1][j + arr[k].second] + j + arr[k].second, dp[i - 1][j] - arr[k].first);
+                    // } else {
+                    // }
                         dp[i][j + arr[k].second] = dp[i - 1][j] - arr[k].first;
                         q.push(j + arr[k].second);
-                    }
                 }
             }
         }
